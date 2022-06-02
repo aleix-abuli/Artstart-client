@@ -15,6 +15,7 @@ import SavePostPage from '../../pages/SavePostPage';
 import NewCollectionPage from '../../pages/NewCollectionPage';
 import CollectionPage from '../../pages/CollectionPage';
 import EditCollectionPage from '../../pages/EditCollectionPage';
+import ErrorPage from '../../pages/ErrorPage';
 
 export default function AppRoutes() {
 
@@ -36,6 +37,9 @@ export default function AppRoutes() {
             <Route path='/posts/:id/save/new' element={<NewCollectionPage />} />
             <Route path='/collections/:id' element={<CollectionPage />} />
             <Route path='/collections/:id/edit' element={<EditCollectionPage />} />
+
+
+            <Route path='*' element={<ErrorPage />} />
         </Routes>
     );
 };
