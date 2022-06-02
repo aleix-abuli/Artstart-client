@@ -10,9 +10,9 @@
 |`/following`|FollowingPage|user only `<PrivateRoute>`| Same structure as feed, only shows posts from people user follows |
 |`/genres`|GenresChoicePage|user only `<PrivateRoute>`| Allows user to choose a genre out of the available ones |
 |`/genres/:genre`|GenreFeedPage|user only `<PrivateRoute>`| Same structure as feed, only shows posts from a filtered genre |
-|`/users/:id/posts`|UserPage, PostGrid|user only `<PrivateRoute>`| Shows a user profile and their posts, link to their likes or their collections |
-|`/users/:id/likes`|UserPage, PostGrid|user only `<PrivateRoute>`| Shows a user profile and their likes, link to their posts or their collections |
-|`/users/:id/collections`|UserPage, CollGrid|user only `<PrivateRoute>`| Shows a user profile and their collections, link to their posts or their likes |
+|**DOUBT** `/users/:id/posts`|UserPage, PostGrid|user only `<PrivateRoute>`| Shows a user profile and their posts, link to their likes or their collections |
+|**DOUBT** `/users/:id/likes`|UserPage, PostGrid|user only `<PrivateRoute>`| Shows a user profile and their likes, link to their posts or their collections |
+|**DOUBT** `/users/:id/collections`|UserPage, CollGrid|user only `<PrivateRoute>`| Shows a user profile and their collections, link to their posts or their likes |
 |`/users/:id/edit`|UserEditPage|user only `<PrivateRoute>`| Allows user to update their basic info |
 |`/posts/new`|NewPostPage|user only `<PrivateRoute>`| Form to create a new post |
 |`/posts/:id`|PostPage|user only `<PrivateRoute>`| Shows the details of a post, as weel as the comments |
