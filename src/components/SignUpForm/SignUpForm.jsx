@@ -1,5 +1,8 @@
+import axios from "axios";
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
+const api = process.env.REACT_APP_API_URL;
 
 export default function SignUpForm() {
 
@@ -18,6 +21,11 @@ export default function SignUpForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        axios
+        .post(`${api}/api/auth/signup`, signUpData)
+        .then((__) => navigate('/feed'))
+        .catch(err => console.log(err));
     };
 
     const { username, email, password } = signUpData;
