@@ -1,21 +1,21 @@
 import { Routes, Route } from 'react-router-dom';
-import LandingPage from '../../pages/LandingPage';
-import SignUpPage from '../../pages/SignUpPage';
-import LogInPage from '../../pages/LogInPage';
-import FeedPage from '../../pages/FeedPage';
-import FollowingPage from '../../pages/FollowingPage';
-import GenresChoicePage from '../../pages/GenresChoicePage';
-import GenreFeedPage from '../../pages/GenreFeedPage';
-import UserPage from '../../pages/UserPage';
-import EditUserPage from '../../pages/EditUserPage';
-import PostPage from '../../pages/PostPage';
-import NewPostPage from '../../pages/NewPostPage';
-import EditPostPage from '../../pages/EditPostPage';
-import SavePostPage from '../../pages/SavePostPage';
-import NewCollectionPage from '../../pages/NewCollectionPage';
-import CollectionPage from '../../pages/CollectionPage';
-import EditCollectionPage from '../../pages/EditCollectionPage';
-import ErrorPage from '../../pages/ErrorPage';
+import LandingPage from '../pages/PublicPages/LandingPage';
+import SignUpPage from '../pages/SignUp/SignUpPage';
+import LogInPage from '../pages/LogIn/LogInPage';
+import FeedPage from '../pages/Feed/FeedPage';
+import FollowingPage from '../pages/Feed/FollowingPage';
+import GenresChoicePage from '../pages/Genre/GenresChoicePage';
+import GenreFeedPage from '../pages/Feed/GenreFeedPage';
+import UserPage from '../pages/User/UserPage';
+import EditUserPage from '../pages/User/EditUserPage';
+import PostPage from '../pages/Post/PostPage';
+import NewPostPage from '../pages/Post/NewPostPage';
+import EditPostPage from '../pages/Post/EditPostPage';
+import SavePostPage from '../pages/Post/SavePostPage';
+import NewCollectionPage from '../pages/Collection/NewCollectionPage';
+import CollectionPage from '../pages/Collection/CollectionPage';
+import EditCollectionPage from '../pages/Collection/EditCollectionPage';
+import ErrorPage from '../pages/ErrorPage';
 
 export default function AppRoutes() {
 
