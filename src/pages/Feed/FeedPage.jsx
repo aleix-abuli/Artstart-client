@@ -12,9 +12,8 @@ export default function FeedPage() {
 
         axios
         .get(`${api}/api/posts`)
-        .then(dbPosts => {
-            console.log(dbPosts)
-            setPosts(dbPosts.data)})
+        .then(({ data }) => {
+            setPosts(data)})
         .catch(err => console.log(err));
 
     }, []);
@@ -24,7 +23,7 @@ export default function FeedPage() {
             {posts?
                 <>
                 {posts.map(post => (
-                    <FeedPost post={post} />
+                    <FeedPost post={post} key={post._id} />
                 ))}
                 </>
                 :
