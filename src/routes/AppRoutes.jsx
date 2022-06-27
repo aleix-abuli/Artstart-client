@@ -17,8 +17,8 @@ import CollectionPage from '../pages/Collection/CollectionPage';
 import EditCollectionPage from '../pages/Collection/EditCollectionPage';
 import ErrorPage from '../pages/ErrorPage';
 
-export default function AppRoutes() {
 
+export default function AppRoutes() {
     return(
         <Routes>
             <Route path='/' element={<LandingPage />} />

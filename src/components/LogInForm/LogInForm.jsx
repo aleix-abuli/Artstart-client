@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/auth.context";
 
 const api = process.env.REACT_APP_API_URL;
 
 export default function LogInForm() {
+
+    const { storeToken, authenticateUser } = useContext(AuthContext);
 
     const [loginData, setLoginData] = useState({
         email: '',
@@ -22,9 +25,10 @@ export default function LogInForm() {
         e.preventDefault();
 
         axios
-        .post(`${api}/api/auth/login`)
+        .post(`${api}/api/auth/login`, loginData)
         .then(({ data }) => {
-            // missing context to authenticateUser and storeToken
+            storeToken(data.authToken);
+            authenticateUser();
             navigate('/feed');
         })
         .catch(err => console.log(err));
