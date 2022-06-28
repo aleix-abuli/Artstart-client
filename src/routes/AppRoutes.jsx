@@ -28,7 +28,7 @@ export default function AppRoutes() {
             <Route path='/following' element={<FollowingPage />} />
             <Route path='/genres' element={<GenresChoicePage />} />
             <Route path='/genres/:genre' element={<GenreFeedPage />} />
-            <Route path='/users/:id' element={<UserPage />} /> {/* Not sure how to put the three different sections, maybe it's better to have it only in one single route */}
+            <Route path='/users/:id' element={<UserPage />} />
             <Route path='/users/:id/edit' element={<EditUserPage />} />
             <Route path='/posts/new' element={<NewPostPage />} />
             <Route path='/posts/:id' element={<PostPage />} />

@@ -1,5 +1,37 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import FeedPost from '../../components/FeedPost/FeedPost';
+
+const api = process.env.REACT_APP_API_URL;
+
 export default function GenreFeedPage() {
+
+    const { genre } = useParams();
+
+    const [genreDB, setGenreDB] = useState(null);
+
+    useEffect(() => {
+
+        axios
+        .get(`${api}/api/genres/${genre}`)
+        .then(({ data }) => setGenreDB(data[0]))
+        .catch((err) => console.log(err));
+
+    }, [])
+
     return (
-        <h1>GenreFeedPage.jsx</h1>
+        <>
+            {genreDB ?
+                <>
+                {genreDB.items.map(post => (
+                    <FeedPost post={post} key={post._id} />
+                ))}
+                </>
+            :
+                <>
+                </>
+            }
+        </>
     );
 };

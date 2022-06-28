@@ -11,8 +11,8 @@ export default function Navbar() {
             <h1>Navbar</h1>
             {user ?
                 <div>
-                    <Link to={`/users/${user._id}`} className='navLink white' >Profile</Link>
-                    <button onClick={logOutUser} className='navBtn green tigerBack' >Log out</button>
+                    <Link to={`/users/${user._id}`} >Profile</Link>
+                    <button onClick={logOutUser} >Log out</button>
                 </div>
                 :
                 <div>

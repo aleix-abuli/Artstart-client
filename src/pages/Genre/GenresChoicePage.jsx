@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 const api = process.env.REACT_APP_API_URL;
 
@@ -28,7 +29,7 @@ export default function GenresChoicePage() {
             {genres ? 
                 <>
                     {genres.map((genre) => (
-                        <h3 key={genre._id}>{genre.genre}</h3>
+                        <Link to={`/genres/${genre.genre}`} >{genre.genre}</Link>
                     ))}
                 </>
             :
