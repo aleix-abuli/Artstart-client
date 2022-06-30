@@ -1,12 +1,15 @@
 import PostInfo from '../PostInfo/PostInfo'
 
-export default function FeedPost({ post }) {
+export default function FeedPost(props) {
+
+    const { post } = props;
+
     return(
         <>
             {post.imageArray.map((image, index) => (
                 <img src={image} key={index} />
             ))}
-            <PostInfo owner={post.owner} description={post.description} />
+            <PostInfo post={post} />
         </>
     );
 };

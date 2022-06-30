@@ -13,8 +13,10 @@ export default function GenreFeedPage() {
 
     useEffect(() => {
 
+        const storedToken = localStorage.getItem('authToken');
+
         axios
-        .get(`${api}/api/genres/${genre}`)
+        .get(`${api}/api/genres/${genre}`, { headers: { Authorization: `Bearer ${storedToken}` } })
         .then(({ data }) => setGenreDB(data[0]))
         .catch((err) => console.log(err));
 

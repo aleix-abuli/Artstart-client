@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PostGridPost from '../PostGridPost/PostGridPost';
 
 export default function PostGrid(props) {
 
@@ -13,7 +14,11 @@ export default function PostGrid(props) {
     return (
         <>
             {userPosts ? 
-                <p>There are posts :)</p>
+                <>
+                {posts.map(post => (
+                    <PostGridPost post={post} />
+                ))}
+                </>
             :
                 <p>You haven't posted anything yet :(</p>
             }

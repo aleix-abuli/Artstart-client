@@ -28,8 +28,8 @@ export default function GenresChoicePage() {
         <>
             {genres ? 
                 <>
-                    {genres.map((genre) => (
-                        <Link to={`/genres/${genre.genre}`} >{genre.genre}</Link>
+                    {genres.map((genre, index) => (
+                        <Link to={`/genres/${genre.genre}`} key={index} >{genre.genre}</Link>
                     ))}
                 </>
             :

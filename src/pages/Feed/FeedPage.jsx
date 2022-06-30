@@ -10,8 +10,10 @@ export default function FeedPage() {
 
     useEffect(() => {
 
+        const storedToken = localStorage.getItem('authToken');
+
         axios
-        .get(`${api}/api/posts`)
+        .get(`${api}/api/posts`, { headers: { Authorization: `Bearer ${storedToken}` } })
         .then(({ data }) => {
             setPosts(data)})
         .catch(err => console.log(err));

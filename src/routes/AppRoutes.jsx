@@ -17,6 +17,9 @@ import CollectionPage from '../pages/Collection/CollectionPage';
 import EditCollectionPage from '../pages/Collection/EditCollectionPage';
 import ErrorPage from '../pages/ErrorPage';
 
+import PrivateRoute from './PrivateRoute';
+
+
 
 export default function AppRoutes() {
     return(
@@ -24,19 +27,58 @@ export default function AppRoutes() {
             <Route path='/' element={<LandingPage />} />
             <Route path='/signup' element={<SignUpPage />} />
             <Route path='/login' element={<LogInPage />} />
-            <Route path='/feed' element={<FeedPage />} />
-            <Route path='/following' element={<FollowingPage />} />
-            <Route path='/genres' element={<GenresChoicePage />} />
-            <Route path='/genres/:genre' element={<GenreFeedPage />} />
-            <Route path='/users/:id' element={<UserPage />} />
-            <Route path='/users/:id/edit' element={<EditUserPage />} />
-            <Route path='/posts/new' element={<NewPostPage />} />
-            <Route path='/posts/:id' element={<PostPage />} />
-            <Route path='/posts/:id/edit' element={<EditPostPage />} />
-            <Route path='/posts/:id/save' element={<SavePostPage />} />
-            <Route path='/posts/:id/save/new' element={<NewCollectionPage />} />
-            <Route path='/collections/:id' element={<CollectionPage />} />
-            <Route path='/collections/:id/edit' element={<EditCollectionPage />} />
+
+            <Route path="/feed" element={<PrivateRoute />}>
+                <Route path="" element={<FeedPage />} />
+            </Route>
+
+            <Route path='/following' element={<PrivateRoute />}>
+                <Route path="" element={<FollowingPage />} />
+            </Route>
+
+            <Route path='/genres' element={<PrivateRoute />}>
+                <Route path="" element={<GenresChoicePage />} />
+            </Route>
+
+            <Route path='/genres/:genre' element={<PrivateRoute />}>
+                <Route path="" element={<GenreFeedPage />} />
+            </Route>
+
+            <Route path='/users/:id' element={<PrivateRoute />}>
+                <Route path="" element={<UserPage />} />
+            </Route>
+
+            <Route path='/users/:id/edit' element={<PrivateRoute />}>
+                <Route path="" element={<EditUserPage />} />
+            </Route>
+
+            <Route path='/posts/new' element={<PrivateRoute />}>
+                <Route path="" element={<NewPostPage />} />
+            </Route>
+
+            <Route path='/posts/:id' element={<PrivateRoute />}>
+                <Route path="" element={<PostPage />} />
+            </Route>
+
+            <Route path='/posts/:id/edit' element={<PrivateRoute />}>
+                <Route path="" element={<EditPostPage />} />
+            </Route>
+
+            <Route path='/posts/:id/save' element={<PrivateRoute />}>
+                <Route path="" element={<SavePostPage />} />
+            </Route>
+
+            <Route path='/posts/:id/save/new' element={<PrivateRoute />}>
+                <Route path="" element={<NewCollectionPage />} />
+            </Route>
+
+            <Route path='/collections/:id' element={<PrivateRoute />}>
+                <Route path="" element={<CollectionPage />} />
+            </Route>
+
+            <Route path='/collections/:id/edit' element={<PrivateRoute />}>
+                <Route path="" element={<EditCollectionPage />} />
+            </Route>
 
 
             <Route path='*' element={<ErrorPage />} />
