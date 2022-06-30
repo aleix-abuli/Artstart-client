@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PostGridPost from '../PostGridPost/PostGridPost';
 
 export default function LikesGrid(props) {
 
@@ -13,7 +14,11 @@ export default function LikesGrid(props) {
     return (
         <>
             {likedPosts ? 
-                <p>There are likes :)</p>
+                <>
+                {posts.map(post => (
+                    <PostGridPost post={post} />
+                ))}
+                </>
             :
                 <p>You haven't liked any post yet :(</p>
             }
