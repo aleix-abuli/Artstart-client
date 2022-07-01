@@ -10,13 +10,13 @@ import CollGrid from '../../components/Grids/CollGrid';
 const api = process.env.REACT_APP_API_URL;
 
 export default function UserPage() {
-
+    
+    const { id } = useParams();
+    
+    const storedToken = localStorage.getItem('authToken');
+    
     const [user, setUser] = useState(null);
     const [content, setContent] = useState('posts');
-
-    const { id } = useParams();
-
-    const storedToken = localStorage.getItem('authToken');
 
     useEffect(() => {
 
@@ -64,7 +64,7 @@ export default function UserPage() {
                 </>
             :
                 <>
-                    <p>User not found in DB.</p>
+                    <p>Something went wrong.</p>
                 </>
             }
         </>

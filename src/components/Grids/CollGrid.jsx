@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CollGridColl from '../../components/CollGridColl/CollGridColl';
 
 export default function CollGrid(props) {
 
@@ -13,7 +14,11 @@ export default function CollGrid(props) {
     return (
         <>
             {userCollections ? 
-                <p>There are collections :)</p>
+                <>
+                {collections.map(collection => (
+                    <CollGridColl collection={collection} key={collection._id} />
+                ))}
+                </>
             :
                 <p>You have no collections yet :(</p>
             }
