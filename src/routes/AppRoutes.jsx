@@ -71,6 +71,10 @@ export default function AppRoutes() {
             <Route path='/posts/:id/save/new' element={<PrivateRoute />}>
                 <Route path="" element={<NewCollectionPage />} />
             </Route>
+            
+            <Route path='/collections/new' element={<PrivateRoute />}>
+                <Route path="" element={<NewCollectionPage />} />
+            </Route>
 
             <Route path='/collections/:id' element={<PrivateRoute />}>
                 <Route path="" element={<CollectionPage />} />

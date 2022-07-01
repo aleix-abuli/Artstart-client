@@ -16,7 +16,7 @@ export default function LikesGrid(props) {
             {likedPosts ? 
                 <>
                 {posts.map(post => (
-                    <PostGridPost post={post} />
+                    <PostGridPost post={post} key={post._id} />
                 ))}
                 </>
             :

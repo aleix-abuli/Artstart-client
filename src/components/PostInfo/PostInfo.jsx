@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import LikeButton from '../LikeButton/LikeButton';
-import FollowButton from '../FollowButton/FollowButton';
+import SaveButton from '../SaveButton/SaveButton';
 
 export default function PostInfo(props) {
 
@@ -15,7 +15,7 @@ export default function PostInfo(props) {
                     <h2>{owner.username}</h2>
                 </Link>
                 <LikeButton post={post} />
-                <FollowButton />
+                <SaveButton post={post} />
             </div>
             <p>{description}</p>
         </>

@@ -16,7 +16,7 @@ export default function PostGrid(props) {
             {userPosts ? 
                 <>
                 {posts.map(post => (
-                    <PostGridPost post={post} />
+                    <PostGridPost post={post} key={post._id} />
                 ))}
                 </>
             :
