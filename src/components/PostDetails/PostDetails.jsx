@@ -13,7 +13,6 @@ export default function PostDetails(props) {
             ))}
             <PostInfo post={post} />
             <TagCarousel tags={post.genres} />
-            <CommentList comments={post.comments} />
         </>
     );
 };
