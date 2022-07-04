@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/auth.context";
 
@@ -7,7 +7,7 @@ const api = process.env.REACT_APP_API_URL;
 
 export default function LogInForm() {
 
-    const { storeToken, authenticateUser } = useContext(AuthContext);
+    const { storeToken, authenticateUser, user } = useContext(AuthContext);
 
     const [loginData, setLoginData] = useState({
         email: '',
@@ -29,10 +29,13 @@ export default function LogInForm() {
         .then(({ data }) => {
             storeToken(data.authToken);
             authenticateUser();
-            navigate('/feed');
         })
         .catch(err => console.log(err));
     };
+
+    useEffect(() => {
+        if(user) navigate('/feed');
+    }, [user]);
 
     const { email, password } = loginData;
 
