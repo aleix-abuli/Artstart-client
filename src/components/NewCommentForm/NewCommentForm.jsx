@@ -14,7 +14,8 @@ export default function NewCommentForm(props) {
     const [newCommentData, setNewCommentData] = useState({
         message: '',
         owner: user._id,
-        post: post
+        post: post,
+        collection: collection
     });
 
     const handleInputChange = (e) => {
