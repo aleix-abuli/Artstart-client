@@ -4,7 +4,7 @@ import NewCommentForm from '../NewCommentForm/NewCommentForm';
 
 export default function CommentList(props) {
 
-    const { comments, post, setComments } = props;
+    const { comments, post, collection, setComments } = props;
 
     const [thereAreComments, setThereAreComments] = useState(false);
 
@@ -22,7 +22,9 @@ export default function CommentList(props) {
                 ))}
             </div>
             }
-            <NewCommentForm post={post} setComments={setComments} />
+            {post && <NewCommentForm post={post} setComments={setComments} />}
+            {collection && <NewCommentForm collection={collection} setComments={setComments} />}
+            
         </>
     );
 };

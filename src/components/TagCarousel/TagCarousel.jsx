@@ -4,8 +4,8 @@ export default function TagCarousel(props) {
 
     return(
         <>
-            {tags.map(tag => (
-                <p key={tag._id}>{tag.genre}</p>
+            {tags.map((tag, index) => (
+                <p key={index} >{tag.genre}</p>
             ))}
         </>
     );

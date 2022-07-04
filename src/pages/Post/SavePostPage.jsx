@@ -13,8 +13,7 @@ export default function SavePostPage() {
     const { user } = useContext(AuthContext);
 
     const [collections, setCollections] = useState(null);
-    const [thereAreColl, setThereAreColl] = useState(false);
-
+    
     const storedToken = localStorage.getItem('authToken');
 
     useEffect(() => {
@@ -23,7 +22,6 @@ export default function SavePostPage() {
             axios
             .get(`${api}/api/users/${user._id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(({ data }) => {
-                console.log('data from db', data)
                 if(data.collections.length > 0) return setCollections(data.collections);
             })
             .catch((err) => console.log(err));
@@ -50,7 +48,7 @@ export default function SavePostPage() {
             {collections && collections.map((collection) => {
                     if(collection.items.includes(id)) {
                         return (
-                            <div>
+                            <div key={collection._id}>
                                 <p>TAKEN! {collection.title}</p>
                             </div>
                         );
