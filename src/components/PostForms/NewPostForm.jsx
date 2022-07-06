@@ -22,9 +22,12 @@ export default function NewPostForm() {
 
     const [loadingImage, setLoadingImage] = useState(false);
     const [imageList, setImageList] = useState([{image: ''}]);
+    const [errorMessage, setErrorMessage] = useState(null);
 
     useEffect(() => {
-        if(user) setNewPostData({...newPostData, owner: user._id})
+
+        if(user) setNewPostData({...newPostData, owner: user._id});
+
     }, [user]);
 
     const addImageInput = (e) => {
@@ -33,12 +36,6 @@ export default function NewPostForm() {
         setImageList([ ...imageList, {image: ''}]);
 
     };
-
-    const saveImage = (e) => {
-
-        e.preventDefault();
-        
-    }
 
     const handleInputChange = (e) => {
 
@@ -51,11 +48,16 @@ export default function NewPostForm() {
 
         e.preventDefault();
 
-        /* axios
-        .post(`${api}/api/collections`, newCollData, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(({ data }) => navigate(`/collections/${data._id}`))
-        .catch((err) => console.log(err)); */
-        
+        if(newPostData.imageArray.length === 0) setErrorMessage('You need to upload at least 1 picture.');
+        else {
+
+            axios
+            .post(`${api}/api/posts`, newPostData, { headers: { Authorization: `Bearer ${storedToken}` } })
+            .then((post) => console.log('created one post', post))
+            .catch((err) => console.log(err));
+
+        };
+
     };
 
     function handleImageUpload(e) {
@@ -77,27 +79,50 @@ export default function NewPostForm() {
             return array;
         })
         .then((updatedArr) => {
+            console.log('new array: ', updatedArr)
             setLoadingImage(false);
             setNewPostData({ ...newPostData, imageArray: updatedArr });
         })
         .catch(err => console.log(err));
     };
 
+    const deleteImage = (e, index) => {
+
+        e.preventDefault();
+        const array = [ ...newPostData.imageArray ];
+        array.splice(index, 1);
+        return setNewPostData({ ...newPostData, imageArray: array });
+
+    };
+
     const { description } = newPostData;
 
-    return(
+    return (
         <form onSubmit={handleSubmit}>
             <label htmlFor="description">Description</label>
-            <textarea rows='4' cols='25' name='description' value={description} onChange={handleInputChange} required />
+            <textarea rows='4' cols='25' name='description' value={description} onChange={handleInputChange} />
 
             <label htmlFor="imageUrl">Images</label>
             {imageList.map((input, index) => (
-                <input key={index} name='imageUrl' type='file' onChange={saveImage} required />
+                <input key={index} name='imageUrl' type='file' onChange={handleImageUpload} required />
             ))}
 
             <button onClick={addImageInput}>Add more images</button>
 
-            <button type='submit'>Post</button>
+            {newPostData.imageArray.length > 0 && (
+                <>
+                {newPostData.imageArray.map((image, index) => (
+                    <>
+                        <img src={image} />
+                        <button onClick={(e) => deleteImage(e, index)}>X</button>
+                    </>
+                ))}
+                </>
+            )}
+
+            {errorMessage && <p>{errorMessage}</p>}
+
+            {loadingImage ? <p>Loading...</p> : <button type='submit'>Post</button>}
         </form>
     );
 };
