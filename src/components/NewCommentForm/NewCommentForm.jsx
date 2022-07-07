@@ -9,7 +9,7 @@ export default function NewCommentForm(props) {
     const storedToken = localStorage.getItem('authToken');
 
     const { user } = useContext(AuthContext);
-    const { post, collection, setComments } = props;
+    const { post, collection, setComments, setThereAreComments } = props;
     
     const [newCommentData, setNewCommentData] = useState({
         message: '',
@@ -35,6 +35,7 @@ export default function NewCommentForm(props) {
             .post(`${api}/api/comments/posts`, newCommentData, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(({ data }) => {
                 setNewCommentData({...newCommentData, message: ''});
+                setThereAreComments(true);
                 setComments(data);
             })
             .catch((err) => console.log(err));

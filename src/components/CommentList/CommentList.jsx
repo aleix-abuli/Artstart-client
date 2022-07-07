@@ -22,8 +22,8 @@ export default function CommentList(props) {
                 ))}
             </div>
             }
-            {post && <NewCommentForm post={post} setComments={setComments} />}
-            {collection && <NewCommentForm collection={collection} setComments={setComments} />}
+            {post && <NewCommentForm post={post} setComments={setComments} setThereAreComments={setThereAreComments} />}
+            {collection && <NewCommentForm collection={collection} setComments={setComments} setThereAreComments={setThereAreComments} />}
             
         </>
     );
