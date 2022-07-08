@@ -1,5 +1,10 @@
+import EditUserForm from "../../components/UserForms/EditUserForm";
+
 export default function EditUserPage() {
     return (
-        <h1>EditUserPage.jsx</h1>
+        <>
+            <h1>Edit profile</h1>
+            <EditUserForm />
+        </>
     );
 };

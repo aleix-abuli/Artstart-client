@@ -6,17 +6,22 @@ import ProfileCard from '../../components/UserProfile/ProfileCard';
 import PostGrid from '../../components/Grids/PostGrid';
 import LikesGrid from '../../components/Grids/LikesGrid';
 import CollGrid from '../../components/Grids/CollGrid';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/auth.context';
 
 const api = process.env.REACT_APP_API_URL;
 
 export default function UserPage() {
     
+    const { user } = useContext(AuthContext);
+
     const { id } = useParams();
     
     const storedToken = localStorage.getItem('authToken');
     
-    const [user, setUser] = useState(null);
+    const [userData, setUser] = useState(null);
     const [content, setContent] = useState('posts');
+    const [isOwner, setIsOwner] = useState(false);
 
     useEffect(() => {
 
@@ -28,6 +33,12 @@ export default function UserPage() {
         .catch((err) => console.log(err));
 
     }, []);
+
+    useEffect(() => {
+
+        if(user && userData && user._id === userData._id) setIsOwner(true);
+
+    }, [user, userData])
 
     const goToPosts = (e) => {
         e.preventDefault();
@@ -46,25 +57,27 @@ export default function UserPage() {
 
     return (
         <>
-            {user ?
+            {userData ?
                 <>
-                    <ProfileCard user={user} />
+                    <ProfileCard user={userData} />
+
                     <div>
                         <Link to={'#'} onClick={goToPosts}>Posts</Link>
                         <Link to={'#'} onClick={goToLikes}>Likes</Link>
                         <Link to={'#'} onClick={goToColl}>Collections</Link>
                     </div>
+                    {isOwner && <Link to={`/users/${id}/edit`}>Edit profile</Link>}
                     {(() => {
                         switch(content) {
-                            case 'posts': return <PostGrid posts={user.posts} />;
-                            case 'likes': return <LikesGrid posts={user.likes} />;
-                            case 'collections': return <CollGrid collections={user.collections} />;
+                            case 'posts': return <PostGrid posts={userData.posts} />;
+                            case 'likes': return <LikesGrid posts={userData.likes} />;
+                            case 'collections': return <CollGrid collections={userData.collections} />;
                         }
                     })()}
                 </>
             :
                 <>
-                    <p>Something went wrong.</p>
+                    <p>User not found. Please try again.</p>
                 </>
             }
         </>

@@ -7,6 +7,8 @@ export default function CommentList(props) {
     const { comments, post, collection, setComments } = props;
 
     const [thereAreComments, setThereAreComments] = useState(false);
+    const [ownsPublication, setOwnsPublication] = useState(false); // Still working on this, we need to check if user owns the whole collection or also if they won one of the comments at least
+    const [ownsComment, setOwnsComment] = useState(false);
 
     useEffect(() => {
         if(comments.length > 0) setThereAreComments(true);
