@@ -14,8 +14,7 @@ export default function FeedPage() {
 
         axios
         .get(`${api}/api/posts`, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(({ data }) => {
-            setPosts(data)})
+        .then(({ data }) => setPosts(data.reverse()))
         .catch(err => console.log(err));
 
     }, []);
