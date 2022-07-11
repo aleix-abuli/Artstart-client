@@ -14,6 +14,8 @@ export default function LogInForm() {
         password: ''
     });
 
+    const [hasSubmitted, setHasSubmitted] = useState(false);
+
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
@@ -29,6 +31,7 @@ export default function LogInForm() {
         .then(({ data }) => {
             storeToken(data.authToken);
             authenticateUser();
+            setHasSubmitted(true);
         })
         .catch(err => console.log(err));
     };
@@ -41,7 +44,7 @@ export default function LogInForm() {
 
     return(
         <>
-            <form onSubmit={handleSubmit}>
+            {<form onSubmit={handleSubmit}>
                 <label htmlFor="input-email"> e-mail:
                     <input
                         id="input-email"
@@ -67,7 +70,7 @@ export default function LogInForm() {
                 </label>
 
                 <button type="submit">Log In</button>
-            </form>
+            </form>}
         </>
     );
 };

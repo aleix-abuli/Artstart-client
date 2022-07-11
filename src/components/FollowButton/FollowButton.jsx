@@ -42,10 +42,7 @@ export default function FollowButton(props) {
 
         axios
         .post(`${api}/api/users/follow/${otherUser._id}`, user, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(({ data }) => {
-            checkFollowing();
-            console.log(data)
-        })
+        .then(({ data }) => checkFollowing())
         .catch((err) => console.log(err));
 
     };
@@ -56,10 +53,7 @@ export default function FollowButton(props) {
 
         axios
         .post(`${api}/api/users/unfollow/${otherUser._id}`, user, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(({ data }) => {
-            checkFollowing();
-            console.log(data)
-        })
+        .then(({ data }) => checkFollowing())
         .catch((err) => console.log(err));
 
     };
