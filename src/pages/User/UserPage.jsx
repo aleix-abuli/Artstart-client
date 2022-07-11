@@ -8,6 +8,7 @@ import LikesGrid from '../../components/Grids/LikesGrid';
 import CollGrid from '../../components/Grids/CollGrid';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/auth.context';
+import FollowButton from '../../components/FollowButton/FollowButton';
 
 const api = process.env.REACT_APP_API_URL;
 
@@ -28,11 +29,12 @@ export default function UserPage() {
         axios
         .get(`${api}/api/users/${id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
         .then(({ data }) => {
+            console.log(`we got this user: ${data.username}`)
             setUser(data);
         })
         .catch((err) => console.log(err));
 
-    }, []);
+    }, [id]);
 
     useEffect(() => {
 
@@ -67,6 +69,7 @@ export default function UserPage() {
                         <Link to={'#'} onClick={goToColl}>Collections</Link>
                     </div>
                     {isOwner && <Link to={`/users/${id}/edit`}>Edit profile</Link>}
+                    {!isOwner && <FollowButton otherUser={userData} />}
                     {(() => {
                         switch(content) {
                             case 'posts': return <PostGrid posts={userData.posts} />;
