@@ -6,11 +6,11 @@ const api = process.env.REACT_APP_API_URL;
 
 export default function FeedPage() {
 
+    const storedToken = localStorage.getItem('authToken');
+
     const[posts, setPosts] = useState(null);
 
     useEffect(() => {
-
-        const storedToken = localStorage.getItem('authToken');
 
         axios
         .get(`${api}/api/posts`, { headers: { Authorization: `Bearer ${storedToken}` } })

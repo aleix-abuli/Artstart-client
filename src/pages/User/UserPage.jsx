@@ -28,10 +28,7 @@ export default function UserPage() {
 
         axios
         .get(`${api}/api/users/${id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(({ data }) => {
-            console.log(`we got this user: ${data.username}`)
-            setUser(data);
-        })
+        .then(({ data }) => setUser(data))
         .catch((err) => console.log(err));
 
     }, [id]);

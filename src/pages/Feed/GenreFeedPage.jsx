@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import FeedPost from '../../components/FeedPost/FeedPost';
+import Loader from '../../components/Loader/Loader';
 
 const api = process.env.REACT_APP_API_URL;
 
@@ -17,7 +18,10 @@ export default function GenreFeedPage() {
 
         axios
         .get(`${api}/api/genres/${genre}`, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(({ data }) => setGenreDB(data[0]))
+        .then(({ data }) => {
+            data[0].items.reverse();
+            return setGenreDB(data[0]);
+        })
         .catch((err) => console.log(err));
 
     }, [])
@@ -31,8 +35,7 @@ export default function GenreFeedPage() {
                 ))}
                 </>
             :
-                <>
-                </>
+                <Loader />
             }
         </>
     );
