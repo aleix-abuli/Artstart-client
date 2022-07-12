@@ -27,7 +27,6 @@ export default function FollowButton(props) {
             axios
             .get(`${api}/api/users/${user._id}`)
             .then(({ data }) => {
-                console.log(`${otherUser.username} id is ${otherUser._id} and my following ids are ${data.following}`)
                 if(data.following.some((followee) => otherUser._id === followee._id)) setIsFollowing(true);
                 else setIsFollowing(false);
             })

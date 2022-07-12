@@ -10,7 +10,7 @@ const api = process.env.REACT_APP_API_URL;
 
 export default function GenreFeedPage() {
 
-    const { genrePosts, genreIndex, genrePost, setGenreIndex, setGenreChoice } = useContext(FeedContext);
+    const { genrePosts, genreIndex, genrePost, setGenreIndex, setGenreChoice, goToBeginning } = useContext(FeedContext);
 
     const { genre } = useParams();
 
@@ -33,6 +33,7 @@ export default function GenreFeedPage() {
             {genrePost?
                 <>
                     <FeedPost post={genrePost} />
+                    <button onClick={(__) => goToBeginning(setGenreIndex)}>Go to beginning</button>
                     {(genreIndex > 0) ?
                         <button onClick={goToPrevious}>previous</button>
                         :

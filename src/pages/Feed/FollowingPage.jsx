@@ -9,7 +9,7 @@ const api = process.env.REACT_APP_API_URL;
 
 export default function FollowingPage() {
 
-    const { likedPosts, likedIndex, likedPost, setLikedIndex } = useContext(FeedContext);
+    const { likedPosts, likedIndex, likedPost, setLikedIndex, goToBeginning } = useContext(FeedContext);
 
     const goToNext = (e) => {
         e.preventDefault();
@@ -26,6 +26,7 @@ export default function FollowingPage() {
             {likedPost?
                 <>
                     <FeedPost post={likedPost} />
+                    <button onClick={(__) => goToBeginning(setLikedIndex)}>Go to beginning</button>
                     {(likedIndex > 0) ?
                         <button onClick={goToPrevious}>previous</button>
                         :

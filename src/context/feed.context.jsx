@@ -80,12 +80,16 @@ function FeedProviderWrapper(props) {
         };
     };
 
+    const goToBeginning = (setIndexConst) => {
+        setIndexConst(0);
+    };
+
     return (
         <FeedContext.Provider value={{
             posts, index, post, setIndex,
             likedPosts, likedIndex, likedPost, setLikedIndex,
             genrePosts, genreIndex, genrePost, setGenreIndex,
-            setFollowing, setGenreChoice
+            setFollowing, setGenreChoice, goToBeginning
             }}>
             {props.children}
         </FeedContext.Provider>

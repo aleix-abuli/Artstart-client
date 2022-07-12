@@ -8,7 +8,7 @@ const api = process.env.REACT_APP_API_URL;
 
 export default function FeedPage() {
 
-    const { posts, index, post, setIndex } = useContext(FeedContext);
+    const { posts, index, post, setIndex, goToBeginning } = useContext(FeedContext);
 
     const goToNext = (e) => {
         e.preventDefault();
@@ -25,6 +25,7 @@ export default function FeedPage() {
             {post?
                 <>
                     <FeedPost post={post} />
+                    <button onClick={(__) => goToBeginning(setIndex)}>Go to beginning</button>
                     {(index > 0) ?
                         <button onClick={goToPrevious}>previous</button>
                         :

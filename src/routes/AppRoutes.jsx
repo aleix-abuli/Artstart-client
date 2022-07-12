@@ -9,6 +9,7 @@ import GenreFeedPage from '../pages/Feed/GenreFeedPage';
 import UserPage from '../pages/User/UserPage';
 import FollowingListPage from '../pages/User/FollowingListPage';
 import EditUserPage from '../pages/User/EditUserPage';
+import UserSearchPage from '../pages/UserSearchPage/UserSearchPage';
 import PostPage from '../pages/Post/PostPage';
 import NewPostPage from '../pages/Post/NewPostPage';
 import EditPostPage from '../pages/Post/EditPostPage';
@@ -53,6 +54,10 @@ export default function AppRoutes() {
 
             <Route path='/users/:id/edit' element={<PrivateRoute />}>
                 <Route path="" element={<EditUserPage />} />
+            </Route>
+
+            <Route path='/search' element={<PrivateRoute />}>
+                <Route path="" element={<UserSearchPage />} />
             </Route>
 
             <Route path='/posts/new' element={<PrivateRoute />}>

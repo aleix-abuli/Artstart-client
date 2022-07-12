@@ -1,15 +1,19 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "../../context/auth.context";
 
 const api = process.env.REACT_APP_API_URL;
 
 export default function EditUserForm () {
     
+    const storedToken = localStorage.getItem('authToken');
+
+    const { setUser } = useContext(AuthContext);
+
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const storedToken = localStorage.getItem('authToken');
 
     const [userData, setUserData] = useState({
         username: '',
@@ -42,7 +46,10 @@ export default function EditUserForm () {
 
         axios
         .put(`${api}/api/users/${id}`, userData, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then((__) => navigate(`/users/${id}`))
+        .then(({ data }) => {
+            setUser(data);
+            navigate(`/users/${id}`);
+        })
         .catch(err => console.log(err));
     };
 
