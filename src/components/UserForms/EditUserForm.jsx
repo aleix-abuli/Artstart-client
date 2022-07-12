@@ -14,7 +14,6 @@ export default function EditUserForm () {
     const { id } = useParams();
     const navigate = useNavigate();
 
-
     const [userData, setUserData] = useState({
         username: '',
         email: '',
