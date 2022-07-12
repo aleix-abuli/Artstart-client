@@ -9,11 +9,11 @@ const api = process.env.REACT_APP_API_URL;
 export default function FollowButton(props) {
 
     const storedToken = localStorage.getItem('authToken');
-
-    const { otherUser } = props;
-
+    
     const { user } = useContext(AuthContext);
-
+    
+    const { otherUser } = props;
+    
     const [isFollowing, setIsFollowing] = useState(false);
 
     useEffect(() => {    

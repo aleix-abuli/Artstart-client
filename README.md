@@ -21,3 +21,15 @@
 |`/posts/:id/save/new`|NewCollectionPage|user only `<PrivateRoute>`| Allows user to create a new collection |
 |`/collections/:id`|CollectionPage|user only `<PrivateRoute>`| Details of a user's collection |
 |`/collections/:id/edit`|CollectionEditPage|user only `<PrivateRoute>`| Allows user to update one of their collections|
+
+
+**Style Guide**
+Declaration:
+- storedToken
+- Context
+- react-router-dom
+- props
+- useState
+- useEffect
+- functions
+

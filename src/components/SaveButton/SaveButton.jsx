@@ -6,7 +6,7 @@ export default function SaveButton(props) {
 
     return(
         <Link to={`/posts/${post._id}/save`}>
-         <img src='https://upload.wikimedia.org/wikipedia/commons/0/00/Follow_button.png' />
+         <button>Save to...</button>
         </Link>
     );
 };

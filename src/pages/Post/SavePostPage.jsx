@@ -6,15 +6,15 @@ import { AuthContext } from '../../context/auth.context';
 const api = process.env.REACT_APP_API_URL;
 
 export default function SavePostPage() {
+
+    const storedToken = localStorage.getItem('authToken');
+
+    const { user } = useContext(AuthContext);
     
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const { user } = useContext(AuthContext);
-
     const [collections, setCollections] = useState(null);
-    
-    const storedToken = localStorage.getItem('authToken');
 
     useEffect(() => {
 

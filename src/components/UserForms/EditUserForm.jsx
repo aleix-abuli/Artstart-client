@@ -15,6 +15,8 @@ export default function EditUserForm () {
         username: '',
         email: '',
         name: '',
+        description: '',
+        location: '',
         imageUrl: null
     });
 
@@ -60,7 +62,7 @@ export default function EditUserForm () {
         .catch(err => console.log(err));
     };
 
-    const { username, email, name, imageUrl } = userData;
+    const { username, email, name, description, location, imageUrl } = userData;
     
     return(
         <form onSubmit={handleSubmit}>
@@ -93,6 +95,26 @@ export default function EditUserForm () {
                     type="text"
                     name="name"
                     value={name}
+                    onChange={handleInputChange}
+                    required
+                />
+            </label>
+
+            <label htmlFor="description"> Description:
+                <input
+                    type="text"
+                    name="description"
+                    value={description}
+                    onChange={handleInputChange}
+                    required
+                />
+            </label>
+
+            <label htmlFor="location"> Location:
+                <input
+                    type="text"
+                    name="location"
+                    value={location}
                     onChange={handleInputChange}
                     required
                 />
