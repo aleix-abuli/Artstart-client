@@ -10,8 +10,6 @@ const api = process.env.REACT_APP_API_URL;
 
 export default function GenreFeedPage() {
 
-    const storedToken = localStorage.getItem('authToken');
-
     const { genrePosts, genreIndex, genrePost, setGenreIndex, setGenreChoice } = useContext(FeedContext);
 
     const { genre } = useParams();

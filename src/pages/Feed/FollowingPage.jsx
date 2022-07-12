@@ -9,8 +9,6 @@ const api = process.env.REACT_APP_API_URL;
 
 export default function FollowingPage() {
 
-    const storedToken = localStorage.getItem('authToken');
-
     const { likedPosts, likedIndex, likedPost, setLikedIndex } = useContext(FeedContext);
 
     const goToNext = (e) => {

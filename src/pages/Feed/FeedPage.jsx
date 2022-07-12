@@ -8,8 +8,6 @@ const api = process.env.REACT_APP_API_URL;
 
 export default function FeedPage() {
 
-    const storedToken = localStorage.getItem('authToken');
-
     const { posts, index, post, setIndex } = useContext(FeedContext);
 
     const goToNext = (e) => {

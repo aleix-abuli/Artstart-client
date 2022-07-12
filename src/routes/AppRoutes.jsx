@@ -7,6 +7,7 @@ import FollowingPage from '../pages/Feed/FollowingPage';
 import GenresChoicePage from '../pages/Genre/GenresChoicePage';
 import GenreFeedPage from '../pages/Feed/GenreFeedPage';
 import UserPage from '../pages/User/UserPage';
+import FollowingListPage from '../pages/User/FollowingListPage';
 import EditUserPage from '../pages/User/EditUserPage';
 import PostPage from '../pages/Post/PostPage';
 import NewPostPage from '../pages/Post/NewPostPage';
@@ -16,9 +17,7 @@ import NewCollectionPage from '../pages/Collection/NewCollectionPage';
 import CollectionPage from '../pages/Collection/CollectionPage';
 import EditCollectionPage from '../pages/Collection/EditCollectionPage';
 import ErrorPage from '../pages/ErrorPage';
-
 import PrivateRoute from './PrivateRoute';
-
 
 
 export default function AppRoutes() {
@@ -46,6 +45,10 @@ export default function AppRoutes() {
 
             <Route path='/users/:id' element={<PrivateRoute />}>
                 <Route path="" element={<UserPage />} />
+            </Route>
+            
+            <Route path='/users/:id/following' element={<PrivateRoute />}>
+                <Route path="" element={<FollowingListPage />} />
             </Route>
 
             <Route path='/users/:id/edit' element={<PrivateRoute />}>
