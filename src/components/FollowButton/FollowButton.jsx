@@ -1,8 +1,7 @@
 import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../context/auth.context";
+import { FeedContext } from "../../context/feed.context";
 
 const api = process.env.REACT_APP_API_URL;
 
@@ -11,6 +10,7 @@ export default function FollowButton(props) {
     const storedToken = localStorage.getItem('authToken');
     
     const { user } = useContext(AuthContext);
+    const { setFollowing } = useContext(FeedContext);
     
     const { otherUser } = props;
     
@@ -42,7 +42,10 @@ export default function FollowButton(props) {
 
         axios
         .post(`${api}/api/users/follow/${otherUser._id}`, user, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(({ data }) => checkFollowing())
+        .then(({ data }) => {
+            checkFollowing();
+            setFollowing();
+        })
         .catch((err) => console.log(err));
 
     };
@@ -53,7 +56,10 @@ export default function FollowButton(props) {
 
         axios
         .post(`${api}/api/users/unfollow/${otherUser._id}`, user, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(({ data }) => checkFollowing())
+        .then(({ data }) => {
+            checkFollowing();
+            setFollowing();
+        })
         .catch((err) => console.log(err));
 
     };

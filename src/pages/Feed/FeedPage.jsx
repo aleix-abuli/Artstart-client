@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import FeedPost from "../../components/FeedPost/FeedPost";
 import Loader from "../../components/Loader/Loader";
+import { FeedContext } from "../../context/feed.context";
 
 const api = process.env.REACT_APP_API_URL;
 
@@ -9,25 +10,7 @@ export default function FeedPage() {
 
     const storedToken = localStorage.getItem('authToken');
 
-    const [posts, setPosts] = useState(null);
-    const [index, setIndex] = useState(null);
-    const [post, setPost] = useState(null);
-
-    useEffect(() => {
-
-        axios
-        .get(`${api}/api/posts`, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(({ data }) => {
-            setPosts(data.reverse());
-            setIndex(0);
-        })
-        .catch(err => console.log(err));
-
-    }, []);
-
-    useEffect(() => {
-        if(posts && index !== null) setPost(posts[index]);
-    }, [posts, index]);
+    const { posts, index, post, setIndex } = useContext(FeedContext);
 
     const goToNext = (e) => {
         e.preventDefault();

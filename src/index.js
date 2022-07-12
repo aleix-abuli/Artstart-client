@@ -4,12 +4,15 @@ import App from './App';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthProviderWrapper } from './context/auth.context';
+import { FeedProviderWrapper } from './context/feed.context';
 
 ReactDOM.render(
     <React.StrictMode>
         <Router>
             <AuthProviderWrapper>
-                <App />
+                <FeedProviderWrapper>
+                    <App />
+                </FeedProviderWrapper>
             </AuthProviderWrapper>
         </Router>
     </React.StrictMode>
