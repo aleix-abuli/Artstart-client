@@ -27,33 +27,15 @@ function FeedProviderWrapper(props) {
 
     useEffect(() => {
 
-        axios
-        .get(`${api}/api/posts`, { headers: { Authorization: `Bearer ${storedToken}` } })
-        .then(({ data }) => {
-            setPosts(data.reverse());
-            setIndex(0);
-        })
-        .catch(err => console.log(err));
-
-    }, []);
-
-    useEffect(() => {
-        setFollowing();
-    }, [user]);
-
-    useEffect(() => {
-
-        if(posts && index !== null) setPost(posts[index]);
-        if(likedPosts && likedIndex !== null) setLikedPost(likedPosts[likedIndex]);
-        if(genrePosts && genreIndex !== null) {
-            console.log('post is', genreIndex)
-            setGenrePost(genrePosts[genreIndex]);
-        }
-
-    }, [posts, index, likedPosts, likedIndex, genrePosts, genreIndex]);
-
-    const setFollowing = () => {
         if(user) {
+            axios
+            .get(`${api}/api/posts`, { headers: { Authorization: `Bearer ${storedToken}` } })
+            .then(({ data }) => {
+                setPosts(data.reverse());
+                setIndex(0);
+            })
+            .catch(err => console.log(err));
+
             axios
             .get(`${api}/api/users/following/${user._id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(({ data }) => {
@@ -62,22 +44,35 @@ function FeedProviderWrapper(props) {
             })
             .catch((err) => console.log(err));
         };
-    };
+
+    }, [user]);
+
+    useEffect(() => {
+
+        if(posts && index !== null) setPost(posts[index]);
+        if(likedPosts && likedIndex !== null) setLikedPost(likedPosts[likedIndex]);
+        if(genrePosts && genreIndex !== null) {
+            setGenrePost(genrePosts[genreIndex]);
+        };
+
+    }, [posts, index, likedPosts, likedIndex, genrePosts, genreIndex]);
 
     const setGenreChoice = (genre) => {
-        if(genre !== selectedGenre) {
+        if (user) {
+            if(genre !== selectedGenre) {
 
-            setSelectedGenre(genre);
+                setSelectedGenre(genre);
 
-            axios
-            .get(`${api}/api/genres/${genre}`, { headers: { Authorization: `Bearer ${storedToken}` } })
-            .then(({ data }) => {
-                data[0].items.reverse();
-                setGenreIndex(0);
-                return setGenrePosts(data[0].items);
-            })
-            .catch((err) => console.log(err));
-        };
+                axios
+                .get(`${api}/api/genres/${genre}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+                .then(({ data }) => {
+                    data[0].items.reverse();
+                    setGenreIndex(0);
+                    return setGenrePosts(data[0].items);
+                })
+                .catch((err) => console.log(err));
+            };
+        }
     };
 
     const goToBeginning = (setIndexConst) => {
@@ -89,7 +84,7 @@ function FeedProviderWrapper(props) {
             posts, index, post, setIndex,
             likedPosts, likedIndex, likedPost, setLikedIndex,
             genrePosts, genreIndex, genrePost, setGenreIndex,
-            setFollowing, setGenreChoice, goToBeginning
+            setGenreChoice, goToBeginning
             }}>
             {props.children}
         </FeedContext.Provider>
