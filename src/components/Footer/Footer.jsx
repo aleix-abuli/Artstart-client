@@ -19,12 +19,14 @@ export default function Footer() {
             .get(`${api}/api/users/${user._id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(({ data }) => setUserData(data))
             .catch((err) => console.log(err));
-        };
+        } else {
+            setUserData(null);
+        }
     }, [user]);
 
     return(
         <>
-            {userData ? 
+            {user && userData ? 
                 <>
                     <Link to={'/search'}>🔎</Link>
                     <Link to={'/posts/new'}>+</Link>
