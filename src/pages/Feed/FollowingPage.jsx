@@ -11,7 +11,7 @@ export default function FollowingPage() {
 
     const { likedPosts, likedIndex, likedPost, setLikedIndex, goToBeginning } = useContext(FeedContext);
 
-    const goToNext = (e) => {
+    /* const goToNext = (e) => {
         e.preventDefault();
         if(likedIndex < likedPosts.length-1) setLikedIndex(likedIndex + 1);
     };
@@ -19,14 +19,14 @@ export default function FollowingPage() {
     const goToPrevious = (e) => {
         e.preventDefault();
         if(likedIndex > 0) setLikedIndex(likedIndex - 1);
-    };
+    }; */
 
     return (
         <>
             {likedPost?
                 <>
-                    <FeedPost post={likedPost} />
-                    <button onClick={(__) => goToBeginning(setLikedIndex)}>Go to beginning</button>
+                    <FeedPost post={likedPost} posts={likedPosts} index={likedIndex} setIndex={setLikedIndex}/>
+                    {/* <button onClick={(__) => goToBeginning(setLikedIndex)}>Go to beginning</button>
                     {(likedIndex > 0) ?
                         <button onClick={goToPrevious}>previous</button>
                         :
@@ -36,7 +36,7 @@ export default function FollowingPage() {
                         <button onClick={goToNext}>next</button>
                         :
                         <button>fake next</button>
-                    }
+                    } */}
                 </>
                 :
                 <>

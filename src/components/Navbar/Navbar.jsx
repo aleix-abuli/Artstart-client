@@ -15,24 +15,28 @@ export default function Navbar() {
     };
 
     return(
-        <nav>
+        <nav className='sticky-nav white-bg'>
             {user ?
-                <div>
-                    <Link to={'#'} onClick={toggleMenu} >Artstart</Link>
+                <>
+                    <div className='nav border'>
+                        <Link to={'#'} onClick={toggleMenu} className="bold logo-link" >ArtStart</Link>
+                        <button onClick={logOutUser} className="nav-link white blue-bg outline bold">LOG OUT</button>
+                    </div>
                     {displayingMenu && 
-                        <div>
-                            <Link to={'/feed'}>Feed</Link>
-                            <Link to={'/following'}>Following</Link>
-                            <Link to={'/genres'}>Genres</Link>
+                        <div className='sub-nav'>
+                            <Link to={'/feed'} onClick={() => setDisplayingMenu(false)} className='sub-nav-link bottom-border'>Feed</Link>
+                            <Link to={'/following'} onClick={() => setDisplayingMenu(false)} className='sub-nav-link bottom-border'>Following</Link>
+                            <Link to={'/genres'} onClick={() => setDisplayingMenu(false)} className='sub-nav-link'>Genres</Link>
                         </div>
                     }
-                    <button onClick={logOutUser} >Log out</button>
-                </div>
+                </>
                 :
-                <div>
-
-                    <Link to={`/login`} className='navLink white' >Log in</Link>
-                    <Link to={`/signup`} className='navLink white' >Sign up</Link>
+                <div  className='nav border'>
+                    <Link to={'/'} className="bold logo-link">ArtStart</Link>
+                    <div className='div-flex'>
+                        <Link to={`/login`} className="nav-link yellow-bg outline bold">LOG IN</Link>
+                        <Link to={`/signup`} className="nav-link white red-bg outline bold">SIGN UP</Link>
+                    </div>
                 </div>
             }
         </nav>

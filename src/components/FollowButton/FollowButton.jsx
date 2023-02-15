@@ -10,7 +10,7 @@ export default function FollowButton(props) {
     const storedToken = localStorage.getItem('authToken');
     
     const { user } = useContext(AuthContext);
-    const { setFollowing } = useContext(FeedContext);
+    const { refreshFollowing } = useContext(FeedContext);
     
     const { otherUser } = props;
     
@@ -44,7 +44,7 @@ export default function FollowButton(props) {
         .post(`${api}/api/users/follow/${otherUser._id}`, user, { headers: { Authorization: `Bearer ${storedToken}` } })
         .then(({ data }) => {
             checkFollowing();
-            setFollowing();
+            refreshFollowing();
         })
         .catch((err) => console.log(err));
 
@@ -58,7 +58,7 @@ export default function FollowButton(props) {
         .post(`${api}/api/users/unfollow/${otherUser._id}`, user, { headers: { Authorization: `Bearer ${storedToken}` } })
         .then(({ data }) => {
             checkFollowing();
-            setFollowing();
+            refreshFollowing();
         })
         .catch((err) => console.log(err));
 

@@ -1,3 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --white: #F8F8F8;
+    --black: #000000;
+    --blue: #422CC8;
+    --red: #FF0000;
+    --yellow: #FCFF62;
+    --border: 2px solid var(--black);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+}
+
+body {
+    /* min-width: 100vw; */
+    min-height: 100vh;
+    background-color: var(--white);
+    /* overflow-x: hidden; */
+}
+
+h1, h2, h3, h4 {
+    width: fit-content;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: var(--black);
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* width: 100vw; */
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+/* ---------- GENERAL CLASSES ---------- */
+.thin {
+    font-weight: 100;
+}
+
+.extra-light {
+    font-weight: 200;
+}
+
+.light {
+    font-weight: 300;
+}
+
+.regular {
+    font-weight: 400;
+}
+
+.medium {
+    font-weight: 500;
+}
+
+.semi-bold {
+    font-weight: 600;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.extra-bold {
+    font-weight: 800;
+}
+
+.black-font {
+    font-weight: 900;
+}
+
+.ital {
+    font-style: italic;
+}
+
+.white {
+    color: var(--white);
+}
+
+.white-bg {
+    background-color: var(--white);
+}
+
+.black {
+    color: var(--black);
+}
+
+.black-bg {
+    background-color: var(--black);
+}
+
+.blue {
+    color: var(--blue);
+}
+
+.blue-bg {
+    background-color: var(--blue);
+}
+
+.red {
+    color: var(--red);
+}
+
+.red-bg {
+    background-color: var(--red);
+}
+
+.yellow {
+    color: var(--yellow);
+}
+
+.yellow-bg {
+    background-color: var(--yellow);
+}
+
+.border {
+    border: var(--border);
+}
+
+.outline {
+    outline: var(--border);
+}
+
+/* ---------- NAVBAR ---------- */
+.sticky-nav {
+    position: sticky;
+    top: 0;
+}
+
+.nav {
+    /* padding: 2em 0; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-link {
+    font-size: 3rem;
+    margin-left: 2rem;
+}
+
+.nav-link {
+    text-align: center;
+    padding: 2rem;
+    border: 0;
+}
+
+.div-flex {
+    display: flex;
+}
+
+.sub-nav {
+    border: 3px solid var(--black);
+    border-top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sub-nav-link {
+    border: 0;
+    padding-left: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.bottom-border {
+    border-bottom: 3px solid var(--black);
+}
+
+/* ---------- FOOTER ---------- */
+.footer-out {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.footer-in {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    bottom: 0;
+}
+
+.glass{
+    margin: 1rem;
+    width: 4rem;
+    height: 4rem;
+}
+
+.new-post {
+    padding: 1rem 2rem;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-profile {
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+    overflow: hidden;
+    margin: 1rem;
+}
+
+/* ---------- FEED POST ---------- */
+.feed-post-img {
+    width: 100%;
+}
+
 img {
     width: 200px;
 }

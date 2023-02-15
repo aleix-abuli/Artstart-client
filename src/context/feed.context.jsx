@@ -36,13 +36,7 @@ function FeedProviderWrapper(props) {
             })
             .catch(err => console.log(err));
 
-            axios
-            .get(`${api}/api/users/following/${user._id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
-            .then(({ data }) => {
-                setLikedPosts(data.reverse());
-                setLikedIndex(0);
-            })
-            .catch((err) => console.log(err));
+            refreshFollowing();
         };
 
     }, [user]);
@@ -79,12 +73,22 @@ function FeedProviderWrapper(props) {
         setIndexConst(0);
     };
 
+    const refreshFollowing = () => {
+        axios
+        .get(`${api}/api/users/following/${user._id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+        .then(({ data }) => {
+            setLikedPosts(data.reverse());
+            setLikedIndex(0);
+        })
+        .catch((err) => console.log(err));
+    };
+
     return (
         <FeedContext.Provider value={{
             posts, index, post, setIndex,
             likedPosts, likedIndex, likedPost, setLikedIndex,
             genrePosts, genreIndex, genrePost, setGenreIndex,
-            setGenreChoice, goToBeginning
+            setGenreChoice, goToBeginning, refreshFollowing
             }}>
             {props.children}
         </FeedContext.Provider>
