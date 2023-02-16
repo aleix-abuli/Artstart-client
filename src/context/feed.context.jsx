@@ -13,17 +13,19 @@ function FeedProviderWrapper(props) {
     const { user } = useContext(AuthContext);
 
     const [posts, setPosts] = useState(null);
-    const [index, setIndex] = useState(null);
+    const [index, setIndex] = useState(0);
     const [post, setPost] = useState(null);
 
     const [likedPosts, setLikedPosts] = useState(null);
-    const [likedIndex, setLikedIndex] = useState(null);
+    const [likedIndex, setLikedIndex] = useState(0);
     const [likedPost, setLikedPost] = useState(null);
 
     const [selectedGenre, setSelectedGenre] = useState(null);
     const [genrePosts, setGenrePosts] = useState(null);
-    const [genreIndex, setGenreIndex] = useState(null);
+    const [genreIndex, setGenreIndex] = useState(0);
     const [genrePost, setGenrePost] = useState(null);
+
+    const [triggerLike, setTriggerLike] = useState(0);
 
     useEffect(() => {
 
@@ -31,15 +33,16 @@ function FeedProviderWrapper(props) {
             axios
             .get(`${api}/api/posts`, { headers: { Authorization: `Bearer ${storedToken}` } })
             .then(({ data }) => {
+                console.log('FETCHED POSTS: ', data);
                 setPosts(data.reverse());
-                setIndex(0);
+                /* setIndex(0); */
             })
             .catch(err => console.log(err));
 
             refreshFollowing();
         };
 
-    }, [user]);
+    }, [user, triggerLike]);
 
     useEffect(() => {
 
@@ -88,7 +91,7 @@ function FeedProviderWrapper(props) {
             posts, index, post, setIndex,
             likedPosts, likedIndex, likedPost, setLikedIndex,
             genrePosts, genreIndex, genrePost, setGenreIndex,
-            setGenreChoice, goToBeginning, refreshFollowing
+            setGenreChoice, goToBeginning, refreshFollowing, triggerLike, setTriggerLike
             }}>
             {props.children}
         </FeedContext.Provider>

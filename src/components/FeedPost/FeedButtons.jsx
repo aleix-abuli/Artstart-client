@@ -18,21 +18,22 @@ export default function FeedButtons(props) {
         if(index > 0) setIndex(index - 1);
     };
 
-
     return(
         <>
-            <button onClick={(__) => goToBeginning(setIndex)}>Go to beginning</button>
+            {/* <button onClick={(__) => goToBeginning(setIndex)}>Go to beginning</button> */}
 
-           {(index > 0) ?
-                <button onClick={goToPrevious}>previous</button>
-                :
-                <button>fake previous</button>
-            }
-            {(index < posts.length-1) ?
-                <button onClick={goToNext}>next</button>
-                :
-                <button>fake next</button>
-            } 
+            <div className='feed-btn-div'>
+                {(index > 0) ?
+                    <button onClick={goToPrevious} className='feed-btn bold white black-bg'>&lt;</button>
+                    :
+                    <button className='feed-btn bold white black-bg fake-border'>//</button>
+                }
+                {(index < posts.length-1) ?
+                    <button onClick={goToNext} className='feed-btn bold black white-bg'>&gt;</button>
+                    :
+                    <button className='feed-btn bold gray white-bg'>//</button>
+                }
+            </div>
         </>
     );
 };

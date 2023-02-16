@@ -4,9 +4,13 @@ export default function TagCarousel(props) {
 
     return(
         <>
-            {tags.map((tag, index) => (
-                <p key={index} >{tag.genre}</p>
-            ))}
+            {tags.length > 0 &&
+                <div className="tag-carousel-div border-top">
+                    {tags.map((tag, index) => (
+                        <p className="tag-carousel-p" key={index} >{tag.genre}</p>
+                    ))}
+                </div>
+            }
         </>
     );
 };

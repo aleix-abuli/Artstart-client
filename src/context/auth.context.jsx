@@ -1,6 +1,9 @@
+import axios from 'axios';
 import React, { createContext, useState } from 'react';
 import { useEffect } from 'react';
 import authService from '../services/auth.service';
+
+const api = process.env.REACT_APP_API_URL;
 
 const AuthContext = createContext();
 
@@ -24,11 +27,16 @@ function AuthProviderWrapper(props) {
             authService
             .verify(storedToken)
             .then(({ data }) => {
-                const user = data;
-                console.log('DATA IN AUTHENTICATUSER', user)
-                setIsLoggedIn(true);
-                setIsLoading(false);
-                setUser(user);
+                axios
+                .get(`${api}/api/users/${data._id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
+                .then(({ data }) => {
+                    const user = data;
+                    console.log('DATA IN AUTHENTICATUSER', user)
+                    setIsLoggedIn(true);
+                    setIsLoading(false);
+                    setUser(user);
+                });
+
             })
             .catch((_) => logOutUser());
         } else logOutUser();

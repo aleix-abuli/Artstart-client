@@ -5,19 +5,28 @@ import SaveButton from '../SaveButton/SaveButton';
 export default function PostInfo(props) {
 
     const { post } = props;
-    const { owner, description } = post;
+    const { owner, comments, likes } = post;
 
     return(
         <>
-            <div>
-                <Link to={`/users/${owner._id}`} >
-                    <img src={owner.imageUrl} />
-                    <h2>{owner.username}</h2>
+            <div className='post-info-div'>
+                <Link to={`/users/${owner._id}`} className='post-info-profile'>
+                    <div className='post-info-img-container'>
+                        <img src={owner.imageUrl} className='post-info-img'/>
+                    </div>
+                    <p className='bold'>{owner.username}</p>
                 </Link>
-                <LikeButton post={post} />
-                <SaveButton post={post} />
+                <div className='post-info-btn'>
+                    <LikeButton post={post} />
+                    <SaveButton post={post} />
+                </div>
             </div>
-            <p>{description}</p>
+            <div className='post-info-section'>
+                <p>{likes.length} likes</p>
+            </div>
+            <div className='post-info-section border-top'>
+                <p>{comments.length} comments</p>
+            </div>
         </>
     );
 };
