@@ -44,32 +44,36 @@ export default function CommentCard(props) {
             <>
             {ownsPublication?
                 <>
-                    {isEditing?
-                        <EditCommentForm comment={commentData} setIsEditing={setIsEditing} setCommentData={setCommentData} />
-                    :
-                        <p>{commentData.message}</p>
-                    }
-                    <div>
-                        <div>
-                            <p>{owner.username}</p>
-                            <img src={owner.imageUrl} />
+                    <div className="comment-card-profile-flex">
+                        <div className="comment-card-profile-flex">
+                            <div className="comment-card-img-container">
+                                <img src={owner.imageUrl} className='post-info-img' />
+                            </div>
+                            <p className="bold">{owner.username}</p>
                         </div>
+                        {isEditing?
+                            <EditCommentForm comment={commentData} setIsEditing={setIsEditing} setCommentData={setCommentData} />
+                        :
+                            <p>{commentData.message}</p>
+                        }
                         {ownsComment && <button onClick={showEditForm}>Edit</button>}
                         <button onClick={handleDelete}>Delete</button>
                     </div>
                 </>
                 :
                 <>
-                    {isEditing?
-                        <EditCommentForm comment={commentData} setIsEditing={setIsEditing} setCommentData={setCommentData} />
-                    :
-                        <p>{commentData.message}</p>
-                    }
-                    <div>
-                        <div>
-                            <p>{owner.username}</p>
-                            <img src={owner.imageUrl} />
+                    <div className="comment-card-profile-flex">
+                        <div className="comment-card-profile-flex">
+                            <div className="comment-card-img-container">
+                                <img src={owner.imageUrl} className='post-info-img' />
+                            </div>
+                            <p className="bold">{owner.username}</p>
                         </div>
+                        {isEditing?
+                            <EditCommentForm comment={commentData} setIsEditing={setIsEditing} setCommentData={setCommentData} />
+                        :
+                            <p>{commentData.message}</p>
+                        }
                         {ownsComment && <button onClick={showEditForm}>Edit</button>}
                         {ownsComment && <button onClick={handleDelete}>Delete</button>}
                     </div>

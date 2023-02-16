@@ -11,7 +11,7 @@ export default function CommentList(props) {
     const { user } = useContext(AuthContext);
 
     const [thereAreComments, setThereAreComments] = useState(false);
-    const [ownsPublication, setOwnsPublication] = useState(false); // Still working on this, we need to check if user owns the whole collection or also if they won one of the comments at least
+    const [ownsPublication, setOwnsPublication] = useState(false); // Still working on this, we need to check if user owns the whole collection or also if they own one of the comments at least
 
     useEffect(() => {
         if(comments.length > 0) setThereAreComments(true);
@@ -23,18 +23,24 @@ export default function CommentList(props) {
     }, [user]);
 
     return(
-        <>
-            <h3>Comments</h3>
-            {thereAreComments &&
+        <div className="comment-list-div" >
+            <div className="comment-list-h3">
+                <h3>Comments</h3>
+            </div>
+            {thereAreComments ?
             <div>
                 {comments.map(comment => (
                     <CommentCard comment={comment} ownsPublication={ownsPublication} key={comment._id} />
                 ))}
             </div>
+            :
+            <div>
+                <p className="comment-list-default-p">There aren't any comments yet.</p>
+            </div>
             }
             {post && <NewCommentForm post={post} setComments={setComments} setThereAreComments={setThereAreComments} />}
             {collection && <NewCommentForm collection={collection} setComments={setComments} setThereAreComments={setThereAreComments} />}
             
-        </>
+        </div>
     );
 };

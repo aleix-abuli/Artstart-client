@@ -15,8 +15,7 @@ export default function PostPage() {
     const [post, setPost] = useState(null);
     const [comments, setComments] = useState(null);
 
-    useEffect(() => {
-
+    const fetchPost = () => {
         axios
         .get(`${api}/api/posts/${id}`, { headers: { Authorization: `Bearer ${storedToken}` } })
         .then(({ data }) => {
@@ -24,14 +23,17 @@ export default function PostPage() {
             setComments(data.comments);
         })
         .catch((err) => console.log(err));
+    };
 
+    useEffect(() => {
+        fetchPost();
     }, [])
 
     return (
-        <>
+        <div className="feed-post-container" >
             {post && comments ?
                 <>
-                    <PostDetails post={post} />
+                    <PostDetails post={post} fetchPost={fetchPost} />
                     <CommentList comments={comments} post={post._id} setComments={setComments} />
                 </>
             :
@@ -39,6 +41,6 @@ export default function PostPage() {
                     <p>Something went wrong.</p>
                 </>
             }
-        </>
+        </div>
     );
 };

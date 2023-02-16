@@ -11,11 +11,12 @@ export default function FeedPost(props) {
         <div className='feed-post-container'>
             <div>
                 <Link to={`/posts/${post._id}`} className='feed-post-link-flex'>
-                    {post.imageArray.map((image, index) => (
+                    {/* {post.imageArray.map((image, index) => (
                         <img src={image} key={index} className='feed-post-img'/>
-                    ))}
+                    ))} */}
+                    <img src={post.imageArray[0]} className='feed-post-img' alt="" />
                 </Link>
-                <PostInfo post={post} />
+                <PostInfo post={post} feed={true} />
                 <TagCarousel tags={post.genres} />
             </div>
             <div className='feed-post-separator'></div>

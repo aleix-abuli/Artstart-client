@@ -13,7 +13,7 @@ export default function LikeButton(props) {
 
     const { triggerLike, setTriggerLike } = useContext(FeedContext);
 
-    const { post } = props;
+    const { post, fetchPost } = props;
 
     const [likesPost, setLikesPost] = useState(false);
 
@@ -46,6 +46,7 @@ export default function LikeButton(props) {
         .then(({ data }) => {
             checkLike();
             setTriggerLike(triggerLike+1);
+            if(fetchPost) fetchPost();
         })
         .catch((err) => console.log('couldn`t access database', err))
     };
@@ -59,6 +60,7 @@ export default function LikeButton(props) {
         .then(({ data }) => {
             checkLike();
             setTriggerLike(triggerLike+1);
+            if(fetchPost) fetchPost();
         })
         .catch((err) => console.log('couldn`t access database', err))
     };

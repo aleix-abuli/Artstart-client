@@ -59,7 +59,7 @@ export default function NewCommentForm(props) {
     return(
         <form onSubmit={handleSubmit}>
             <label htmlFor="message" />
-            <textarea rows='4' colls='25' name='message' value={message} onChange={handleInputChange} required />
+            <textarea rows='4' colls='25' name='message' value={message} onChange={handleInputChange} placeholder='New comment...' required />
 
             <button type="submit">Comment</button>
         </form>
